@@ -1,3 +1,4 @@
+from copy import deepcopy
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -27,19 +28,17 @@ def plot(xs, mus, ntimes):
 
     fig, axs = plt.subplots(number_of_subplots)
     fig.suptitle('Plot of mu variations')
+    lines = [':', '-.', '-']
 
-    for x, mu in zip(xs, mus):
+    count = [c for c in range(xs)]
+    curr_subplot  = [int(c/number_of_plots_per_subplot) for c in count]
 
-        if (count % number_of_plots_per_subplot==0):
-            legends = []
 
-            if count>0:
-                axs[int(count/number_of_plots_per_subplot)].legend(legend)
-                legends = []
+    for x, mu, c in zip(xs, mus, count):
 
-        axs[int(count/3)].plot(run_f(x, mu, ntimes))
-        legends.append(f"mu = {mu}")
-        count += 1
+        axs[int(curr)].plot(run_f(x, mu, ntimes), linestyle = lines)
+
+
 
     plt.show()
 
