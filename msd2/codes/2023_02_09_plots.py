@@ -30,18 +30,17 @@ def plot(xs, mus, ntimes):
     fig.suptitle('Plot of mu variations')
     lines = [':', '-.', '-']
 
-    count = [c for c in range(xs)]
+    count = [c for c in range(len(xs))]
+    column = [c % number_of_plots_per_subplot for c in count]
     curr_subplot  = [int(c/number_of_plots_per_subplot) for c in count]
 
+    for x, mu, c, col in zip(xs, mus, count, column):
 
-    for x, mu, c in zip(xs, mus, count):
-
-        axs[int(curr)].plot(run_f(x, mu, ntimes), linestyle = lines)
-
-
+        curr = curr_subplot[c]
+        axs[curr].plot(run_f(x, mu, ntimes), linestyle = lines[col], label = f"mu = {mu}")
+        axs[curr].legend()
 
     plt.show()
-
 
 
 #build a function which makes subplots given some input
