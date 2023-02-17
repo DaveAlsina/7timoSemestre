@@ -6,6 +6,6 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 #writes into crontab in order to automate the pull and push of the files
 (crontab -l 2>/dev/null; echo "@reboot sleep 10 && $SCRIPT_DIR/autosync > /home/$USER/.autosync.log") | crontab -
-(crontab -l 2>/dev/null; echo "*/30 07-23 * * * sleep 10 && $SCRIPT_DIR/autosync > /home/$USER/.autosync.log") | crontab -
+(crontab -l 2>/dev/null; echo "*/10 07-23 * * * sleep 10 && $SCRIPT_DIR/autosync > /home/$USER/.autosync.log") | crontab -
 
 
